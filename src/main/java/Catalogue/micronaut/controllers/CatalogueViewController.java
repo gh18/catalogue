@@ -1,12 +1,16 @@
 package Catalogue.micronaut.controllers;
 
-import Catalogue.micronaut.models.Catalogue;
 import Catalogue.micronaut.models.CatalogueItem;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.MediaType;
 
+import java.util.HashMap;
+
 @Controller
 public class CatalogueViewController {
+
+    HashMap<Integer, CatalogueItem> catalogue = new HashMap<>();
+
     @Get
     @Produces(MediaType.APPLICATION_JSON)
     public String viewCatalogue() {
