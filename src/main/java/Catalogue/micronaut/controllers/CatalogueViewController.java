@@ -6,19 +6,27 @@ import io.micronaut.http.MediaType;
 
 import java.util.HashMap;
 
-@Controller
+@Controller("/item")
 public class CatalogueViewController {
 
     HashMap<Integer, CatalogueItem> catalogue = new HashMap<>();
+    CatalogueItem item1 = new CatalogueItem("/some_path",
+                "CAPiTA Kazu Kokubo",
+                560.4,
+                001,
+                3);
 
     @Get
     @Produces(MediaType.APPLICATION_JSON)
     public String viewCatalogue() {
-        return "";          // хотелось юы вернуть строковое (а лучше json) представление каталога
+        return catalogue.toString();        // хотелось юы вернуть строковое (а лучше json) представление каталога
     }
 
     @Post
-    public void updateCatalogue(CatalogueItem item) {
+    public void addItem(CatalogueItem item) {
+        if (item != null) {
+            catalogue.put(item.getInventoryNumber(), item);
+        }
                             // передаем товар/позицию и обновляем каталог
     }
 
@@ -28,7 +36,12 @@ public class CatalogueViewController {
 //    }
 
     @Delete
-    public void deleteItem(CatalogueItem item) {
+    public void deleteItem(int inventoryNumber) {
+        if (catalogue.containsKey(inventoryNumber)) {
+            catalogue.remove(inventoryNumber);
+        } else {
+            System.out.println("Item: " + inventoryNumber + " not found");
+        }
 
     }
 }
