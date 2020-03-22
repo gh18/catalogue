@@ -31,7 +31,7 @@ public class CatalogueViewController {
     }
 
 //    @Put
-//    public void updateImage(file/resource at URI) {
+//    public void updateInfo(file/resource at URI) {
 //                            // например, изменить отдельную картинку на конкретной странице
 //    }
 
