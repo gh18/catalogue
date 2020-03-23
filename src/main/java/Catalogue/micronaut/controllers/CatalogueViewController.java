@@ -9,15 +9,23 @@ import java.util.HashMap;
 @Controller("/item")
 public class CatalogueViewController {
 
-    HashMap<Integer, CatalogueItem> catalogue = new HashMap<>();
+    public HashMap<Integer, CatalogueItem> catalogue = new HashMap<>();
     CatalogueItem item1 = new CatalogueItem("/some_path",
                 "CAPiTA Kazu Kokubo",
                 560.4,
                 001,
                 3);
 
+    public HashMap<Integer, CatalogueItem> getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(HashMap<Integer, CatalogueItem> catalogue) {
+        this.catalogue = catalogue;
+    }
+
     @Get
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String viewCatalogue() {
         return catalogue.toString();        // хотелось юы вернуть строковое (а лучше json) представление каталога
     }
