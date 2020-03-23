@@ -24,8 +24,12 @@ public class CatalogueViewController {
         this.catalogue = catalogue;
     }
 
-    @Get
-    @Produces(MediaType.TEXT_PLAIN)
+
+
+//    catalogue.getCatalogue();
+
+    @Get("/catalogue")
+    @Produces(MediaType.APPLICATION_FORM_URLENCODED)
     public String viewCatalogue() {
         return catalogue.toString();        // хотелось юы вернуть строковое (а лучше json) представление каталога
     }
